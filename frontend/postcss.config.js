@@ -1,6 +1,6 @@
 module.exports = {
   // jitモードは必要に応じてスタイルを反映するモード（厳密には、コンパイラ）　ビルド時間を短縮できる効果がある
-  mode: "jit",
+  // mode: "jit",
   darkMode: false, // 'media' or 'class'
   // ビルド生成時の未使用のスタイルを除外し、パフォーマンスの最適化を行える
   purge: {

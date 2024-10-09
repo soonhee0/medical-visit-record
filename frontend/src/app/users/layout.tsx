@@ -3,13 +3,14 @@ import '../globals.css'; // Tailwind CSS を適用
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
+      {/* {children}はページ全体のコンテンツが表示される場所を示す */}
       <body>{children}</body>
     </html>
   );
 };
 
 export default RootLayout;
-{/* <section className="text-gray-600 body-font">
+ <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-col text-center w-full mb-20">
       <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing</h1>
@@ -76,4 +77,4 @@ export default RootLayout;
       <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">利用者追加</button>
     </div>
   </div>
-</section> */}
+</section> 

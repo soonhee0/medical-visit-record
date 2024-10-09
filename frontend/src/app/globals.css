@@ -1,8 +1,7 @@
-/* Tailwindのレイヤーを上部に追加 */
-@import "~tailwindcss/base";
-@import "~tailwindcss/components";
-@import "~tailwindcss/utilities";
+/* アプリ全体に適用される基本的なスタイルを管理する */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Tailwind の基本設定やカスタムスタイルを書く */

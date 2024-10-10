@@ -1,24 +1,27 @@
 // MenuButtonコンポーネントを使ってボタンのスタイルと機能を設定する
 "use client"; 
+import { useRouter } from 'next/router';
 import React from 'react';
 import MenuButton from './MenuButton';
-
-interface Button{
+// interface Button{
    
-     label:string; //ボタンに表示するラベル
-    onClick:()=>void;//ボタンがクリックされたときの処理
-}
+//      label:string; //ボタンに表示するラベル
+//     onClick:()=>void;//ボタンがクリックされたときの処理
+// }
 
 
 interface UserMenuProps{
     userName:string;
-    buttons:Button[];
+    // buttons:Button[];
 }
 
 
 
-const UserMenu:React.FC<UserMenuProps>=({userName,buttons})=>{
-   
+const UserMenu:React.FC<UserMenuProps>=({userName})=>{
+   const router=useRouter();
+   const handleClick1=()=>{
+    router.push('/create')
+   }
     return (
      
 
@@ -30,19 +33,18 @@ const UserMenu:React.FC<UserMenuProps>=({userName,buttons})=>{
             </div>
             <div className="space-y-2">
               {/* 各ボタンに異なるテキストとクリックイベントを渡す */}
-            {/* buttonsは各ボタンの情報（ラベルやクリックイベント）を格納している配列 */}
-                {buttons.map((button,index)=>(
+           
                     // 各ボタンの情報を利用してメニューボタンを生成する
                     <MenuButton
-                        key={index}
+                    
                         // ボタンクリック時の処理を指定
-                        onClick={button.onClick}
+                        onClick={handleClick1}
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                     
                     >
-                        {button.label}
+                       新しい通院記録を書く
                     </MenuButton> 
-                ))} 
+             
             </div> 
         </div>
     )

@@ -21,13 +21,13 @@ const UserMenuPage: React.FC = () => {
   const buttons = [
     {
       label: "新しい通院記録の作成",
-      onClick: handleClick1,
+      href: "/create-record",
       icon: <FaUserPlus />,
     },
-    { label: "過去の通院記録一覧", onClick: handleClick2, icon: <FaListAlt /> },
+    { label: "過去の通院記録一覧", href: "/past-records", icon: <FaListAlt /> },
     {
       label: "医療機関別通院記録一覧",
-      onClick: handleClick3,
+      href: "/hospital-records",
       icon: <FaHospital />,
     },
   ];

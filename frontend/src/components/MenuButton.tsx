@@ -1,23 +1,26 @@
 // UserMenuPageからプロップスを受け取る
 "use client";
+import Link from "next/link";
 import React from "react";
+
 type MenuButtonProps = {
   // React.ReactNodeはアイコンやテキストを含む
   children: React.ReactNode;
-  // onClick はボタンがクリックされたときに実行される関数
-  onClick: () => void;
+
+  href: string;
   className?: string; // オプションのクラス名プロップ
 };
 const MenuButton: React.FC<MenuButtonProps> = ({
   children,
-  onClick,
+  href,
   className,
 }) => {
   return (
-    //    classNameが存在すればそれを使い、なければデフォルトの’btn'クラスを使う
-    <button onClick={onClick} className={className || "btn"}>
-      {children}
-    </button>
+    // legacyBehaviorを使うことでaタグが使用できる
+    <Link href={href} legacyBehavior>
+      {/* //    classNameが存在すればそれを使う */}
+      <a className={className}>{children}</a>
+    </Link>
   );
 };
 

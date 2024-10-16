@@ -8,7 +8,8 @@ import { FaUserCircle } from "react-icons/fa";
 
 interface Button {
   label: string; //ボタンに表示するラベル
-  onClick: () => void; //ボタンがクリックされたときの処理
+  href: string;
+  // onClick: () => void; //ボタンがクリックされたときの処理
   icon: ReactElement;
 }
 
@@ -38,7 +39,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ userName, buttons }) => {
           <MenuButton
             key={index}
             // ボタンクリック時の処理を指定
-            onClick={button.onClick}
+            href={button.href}
             className="bg-white text-gray-800 flex items-center space-x-2 px-4 py-2 rounded-lg border hover:bg-blue-600"
           >
             <span className="mr-2">{button.icon}</span>

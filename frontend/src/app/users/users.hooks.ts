@@ -10,6 +10,6 @@ export const useUsers = () => {
     console.log(data);
     return data.users;
   };
-
+// fetchUsers をプロパティとして持つオブジェクトを返す　
   return { fetchUsers };
 };

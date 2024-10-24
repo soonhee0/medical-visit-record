@@ -1,22 +1,34 @@
 // UserMenuコンポーネントを使ってボタンの表示を管理
-"use client";
-import { useParams } from "next/navigation"; // 動的なIDを取得
+
 import React from "react";
 import { FaHospital, FaListAlt, FaUserPlus } from "react-icons/fa";
 import UserMenu from "../../../components/UserMenu";
-const UserMenuPage: React.FC = () => {
-  const handleClick1 = () => {
-    // 後でページ遷移の設定をする
-    console.log("Menu button1 clicked");
+import { useUsers } from "./../users.hooks";
+
+type Props = {
+  params: {
+    id: string; // 動的なパラメータ
   };
-  const handleClick2 = () => {
-    // 後でページ遷移の設定をする
-    console.log("Menu button2 clicked");
-  };
-  const handleClick3 = () => {
-    // 後でページ遷移の設定をする
-    console.log("Menu button3 clicked");
-  };
+};
+type user= {
+
+    id: number;
+    name:string;
+  
+};
+
+const UserMenuPage: React.FC<Props>= async({ params }) => {
+  // {}はオブジェクトの分割代入を表す　オブジェクトから特定のプロパティ（関数）を取り出すことができる
+  const {fetchUsers}=useUsers();
+
+  const data=await fetchUsers();
+  console.log("data:",data)
+  // userIdはnumber
+  const userId=parseInt(params.id);
+
+  const user=data.find((user:{id:number})=>user.id===userId)
+  const userName=user?user.name:"匿名ユーザー";
+
   // ボタンのリスト
   const buttons = [
     {
@@ -31,22 +43,7 @@ const UserMenuPage: React.FC = () => {
       icon: <FaHospital />,
     },
   ];
-  // ダミーデータの設定（IDに基づいてユーザー名を生成）
-  const getUserNameById = (id: string | undefined) => {
-    const dummyUsers: { [key: string]: string } = {
-      "1": "太郎",
-      "2": "花子",
-      "3": "次郎",
-    };
-    return dummyUsers[id || ""] || "匿名ユーザー";
-  };
-  //useParamsからidを取得する
-  // useParams の戻り値はオブジェクトなので直接idを取得する
-  const params = useParams<{ id: string }>();
-  const userId = params.id;
-  // userIdを元にユーザー名を取得する
-  const userName = getUserNameById(userId);
-
+  
   return (
     <div className="flex flex-col items-center space-y-4 p-4 bg-gray-100 min-h-screen">
       {/* UserMenu に userName と buttons を渡す */}

@@ -3,31 +3,26 @@
 import React from "react";
 import { FaHospital, FaListAlt, FaUserPlus } from "react-icons/fa";
 import UserMenu from "../../../components/UserMenu";
-import { useUsers } from "./../users.hooks";
-
+import { ApiUrl } from "./../../constants/url";
 type Props = {
   params: {
     id: string; // 動的なパラメータ
   };
 };
-type user= {
 
-    id: number;
-    name:string;
-  
-};
 
 const UserMenuPage: React.FC<Props>= async({ params }) => {
-  // {}はオブジェクトの分割代入を表す　オブジェクトから特定のプロパティ（関数）を取り出すことができる
-  const {fetchUsers}=useUsers();
+ 
 
-  const data=await fetchUsers();
-  console.log("data:",data)
-  // userIdはnumber
   const userId=parseInt(params.id);
+  // fetchやresponse.jsonにはawaitをつける
+  // fetchを使って指定されたエンドポイントにGETリクエストを送信しユーザー情報を取得
+  const response=await fetch(`${ApiUrl.BASE_API_URL}/api/users/${userId}`);
+  // JSONデータとして解析してその結果をdataとして格納する
+  const data=await response.json()
 
-  const user=data.find((user:{id:number})=>user.id===userId)
-  const userName=user?user.name:"匿名ユーザー";
+ 
+  const userName=data.user?data.user.name:"匿名ユーザー";
 
   // ボタンのリスト
   const buttons = [

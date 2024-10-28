@@ -39,7 +39,7 @@ export async function GET(
     );
   }
   return NextResponse.json(
-    { message: `User with  ID ${id} found successfully` },
+    { message: `User with  ID ${id} found successfully`,user },
     { status: 200 }
   );
 }

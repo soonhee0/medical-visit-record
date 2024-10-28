@@ -15,7 +15,6 @@ export async function DELETE(
     1
   );
 
-
   console.log(`Deleting user with id: ${id}`);
 
   // 実際のアプリケーションでは、ここでデータベース操作を行います
@@ -29,18 +28,17 @@ export async function DELETE(
 export async function GET(
   _: NextRequest,
   { params }: { params: { id: string } }
-){
+) {
   const id = params.id;
-  const user=dummyData.find((user) => user.id === parseInt(id));
-  if(!user){
+  const user = dummyData.find((user) => user.id === parseInt(id));
+  if (!user) {
     return NextResponse.json(
       { message: `User with  ${id} doesn't exist` },
       { status: 404 }
     );
   }
   return NextResponse.json(
-    { message: `User with  ID ${id} found successfully`,user },
+    { message: `User with  ID ${id} found successfully`, user },
     { status: 200 }
   );
 }
-

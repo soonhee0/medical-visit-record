@@ -1,7 +1,9 @@
+// クライアントから送信されたデータを受け取る
 import { NextResponse, type NextRequest } from "next/server";
 // フォームで入力した値を受け取る
 export async function POST(request: NextRequest) {
   const body = await request.json();
+  console.log(body);
   const returnBody = {
     visitDate: body.visitDate || "", // 受け取った日付または空文字
     medicalInstitution: body.medicalInstitution || "", // 医療機関名

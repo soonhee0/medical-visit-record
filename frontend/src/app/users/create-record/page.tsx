@@ -1,9 +1,13 @@
 "use client";
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { ApiUrl } from "./../../constants/url";
-
 const MedicalRecordFormPage: React.FC = () => {
   // フォームに入力した内容をsetformDataで保存している
+  const [selectedDate, setSelectedDateTime] = React.useState<Date | null>(
+    new Date()
+  );
   const [formData, setformData] = useState({
     visitDate: "",
     medicalInstitution: "",
@@ -13,7 +17,7 @@ const MedicalRecordFormPage: React.FC = () => {
     prescriptionText: "",
     nextVisitDate: "",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // const [isSubmitted, setIsSubmitted] = useState(false);
   const [visitDateErrorMessage, setVisitDateErrorMessage] = useState("");
   const [medicalInstitutionErrorMessage, setMedicalInstitutionErrorMessage] =
     useState("");
@@ -84,7 +88,7 @@ const MedicalRecordFormPage: React.FC = () => {
             <div className="md:w-1/3">
               <label
                 className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
-                htmlFor="inline-visit-data"
+                // htmlFor="inline-visit-data"
               >
                 通院日
                 <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
@@ -93,11 +97,10 @@ const MedicalRecordFormPage: React.FC = () => {
               </label>
             </div>
             <div className="md:w-2/3">
-              <input
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => setSelectedDateTime(date)}
                 className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                type="text"
-                defaultValue=""
-                placeholder="通院日"
               />
             </div>
           </div>
@@ -120,7 +123,16 @@ const MedicalRecordFormPage: React.FC = () => {
                 type="text"
                 defaultValue=""
                 placeholder="医療機関名"
+                onChange={(e) =>
+                  setformData({
+                    ...formData,
+                    medicalInstitution: e.target.value,
+                  })
+                }
               />
+              {medicalInstitutionErrorMessage && (
+                <p className="text-red-500">{medicalInstitutionErrorMessage}</p>
+              )}
             </div>
           </div>
 
@@ -129,21 +141,21 @@ const MedicalRecordFormPage: React.FC = () => {
               <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
                 通院理由
                 {/* <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
-                  必須
-                </text> */}
+                必須
+              </text> */}
               </label>
             </div>
             {/* 選択式にしたい */}
             {/* <div className="md:w-2/3">
-              <input
-                className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                type="email"
-                value={email}
-                defaultValue=""
-                placeholder="例) example@gmail.me"
-                
-              />
-            </div> */}
+            <input
+              className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              type="email"
+              value={email}
+              defaultValue=""
+              placeholder="例) example@gmail.me"
+              
+            />
+          </div> */}
           </div>
 
           <div className="md:flex md:items-center mb-6">
@@ -160,7 +172,16 @@ const MedicalRecordFormPage: React.FC = () => {
                 className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 defaultValue=""
+                onChange={(e) =>
+                  setformData({
+                    ...formData,
+                    examinationContent: e.target.value,
+                  })
+                }
               />
+              {examinationContentErrorMessage && (
+                <p className="text-red-500">{examinationContentErrorMessage}</p>
+              )}
             </div>
           </div>
           {/* 写真 */}
@@ -175,6 +196,9 @@ const MedicalRecordFormPage: React.FC = () => {
                 className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 defaultValue=""
+                onChange={(e) =>
+                  setformData({ ...formData, prescriptionText: e.target.value })
+                }
               />
             </div>
           </div>
@@ -190,41 +214,32 @@ const MedicalRecordFormPage: React.FC = () => {
                 className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 defaultValue=""
+                onChange={(e) =>
+                  setformData({ ...formData, prescriptionText: e.target.value })
+                }
               />
             </div>
           </div>
-          {/* 次回通院日 */}
+
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
-                次回退院日
+                次回通院日
               </label>
             </div>
             <div className="md:w-2/3">
-              <input
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => setSelectedDateTime(date)}
                 className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                type="text"
-                defaultValue=""
               />
             </div>
           </div>
+
           <div className="flex justify-center">
-            {isSubmitted ? (
-              <div>
-                <p className="text-green-500 text-lg text-bold">
-                  通院記録を登録しました
-                </p>
-              </div>
-            ) : (
-              <button
-                className={
-                  "py-3 lg:py-3 px-14 lg:px-14 text-white-500 font-bold rounded-3xl bg-blue-400 hover:shadow-teal-md transition-all outline-none text-white"
-                }
-                type="submit"
-              >
-                送信
-              </button>
-            )}
+            <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              登録する
+            </button>
           </div>
         </form>
       </div>
@@ -232,11 +247,4 @@ const MedicalRecordFormPage: React.FC = () => {
   );
 };
 
-//     // フォームが送信されるたびにonSubmit関数が呼ばれる
-//     <form onSubmit={onSubmit}>
-//       <input type="text" name="name" />
-//       <button type="submit">送信</button>
-//     </form>
-//   );
-// };
 export default MedicalRecordFormPage;

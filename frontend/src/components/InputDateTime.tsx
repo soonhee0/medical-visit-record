@@ -1,6 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 /**
  * @param selectedDate - 選択された日付と時刻
  * @param onChange - 日付と時刻が変更されたときのコールバック関数
@@ -8,7 +9,6 @@ import "react-datepicker/dist/react-datepicker.css";
 type InputDateTimeProps = {
   selectedDateTime: Date | null;
   onChange: (dateTime: Date | null) => void;
-  //   initialDate?: Date | null;
 };
 
 // ユーザーが日付を選択できる入力フォームを提供するコンポーネント
@@ -18,20 +18,27 @@ type InputDateTimeProps = {
 const InputDateTime: React.FC<InputDateTimeProps> = ({
   selectedDateTime,
   onChange,
-  //   initialDate,
 }) => {
   return (
     // 日時を選択できるカレンダーと時間選択のUI
     <DatePicker
-      // selectedDateがないときはinitialDateを使用
-
       selected={selectedDateTime}
-      onChange={(dateTime) => onChange(dateTime)}
+      // 日付が変更されたときに発火するイベントハンドラ
+      onChange={(date) => onChange(date)}
+      // 時間選択を可能にする
       showTimeSelect
       timeFormat="HH:mm"
       timeIntervals={15}
-      dateFormat="MMMM d, yyyy h:mm aa"
-      timeCaption="Time"
+      timeCaption="time"
+      dateFormat="MM/dd/yyyy h:mm aa"
+      // dateFormat="MMMM d, yyyy h:mm aa"
+      // locale="pt-BR"
+
+      // timeFormat="p"
+      // timeIntervals={15}
+      // dateFormat="Pp"
+
+      className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
     />
   );
 };

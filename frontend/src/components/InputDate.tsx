@@ -27,7 +27,6 @@ const InputDate: React.FC<InputDateProps> = ({
 
       selected={selectedDate}
       onChange={(date) => onChange(date)}
-      showTimeSelect
       dateFormat=" yyyy MMMM d"
       timeCaption="Time"
     />

@@ -1,24 +1,33 @@
 "use client";
+import InputDateTime from "@/components/InputDateTime";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ApiUrl } from "./../../constants/url";
+
 const MedicalRecordFormPage: React.FC = () => {
   // フォームに入力した内容をsetformDataで保存している
-  const [selectedDate, setSelectedDateTime] = React.useState<Date | null>(
-    new Date()
-  );
+
+  // 初期値の設定
   const [formData, setformData] = useState({
-    visitDate: "",
+    // visitDate: "",
     medicalInstitution: "",
     visitReason: "",
     examinationContent: "",
     prescriptionPhoto: null,
     prescriptionText: "",
-    nextVisitDate: "",
+    // nextVisitDate: "",
   });
+
+  // new Date()はコードが実行された時点での日時を示す
+  // selectedDateは日付と時刻を保持する変数
+  // setSelectedDateTimeはselectedDateの値を更新する関数
+  const [selectedDate, setSelectedDateTime] = React.useState<Date | null>(
+    new Date()
+  );
+
   // const [isSubmitted, setIsSubmitted] = useState(false);
-  const [visitDateErrorMessage, setVisitDateErrorMessage] = useState("");
+  // const [visitDateErrorMessage, setVisitDateErrorMessage] = useState("");
   const [medicalInstitutionErrorMessage, setMedicalInstitutionErrorMessage] =
     useState("");
   const [examinationContentErrorMessage, setExaminationContentErrorMessage] =
@@ -28,14 +37,14 @@ const MedicalRecordFormPage: React.FC = () => {
     // フォームが送信される際にページがリロードされるデフォルトの動作を防いでいる
     e.preventDefault();
     // エラーメッセージの初期化
-    setVisitDateErrorMessage("");
+    // setVisitDateErrorMessage("");
     setMedicalInstitutionErrorMessage("");
     setExaminationContentErrorMessage("");
 
     // エラーのチェック
-    if (!formData.visitDate) {
-      setVisitDateErrorMessage("通院日を入力してください");
-    }
+    // if (!formData.visitDate) {
+    //   setVisitDateErrorMessage("通院日を入力してください");
+    // }
     if (!formData.medicalInstitution) {
       setMedicalInstitutionErrorMessage("医療機関名を入力してください");
     }
@@ -45,9 +54,9 @@ const MedicalRecordFormPage: React.FC = () => {
 
     // エラーメッセージがない場合に送信可能
     const enableSubmit =
-      !visitDateErrorMessage &&
-      !medicalInstitutionErrorMessage &&
-      !examinationContentErrorMessage;
+      // !visitDateErrorMessage &&
+      !medicalInstitutionErrorMessage && !examinationContentErrorMessage;
+
     // クリックしてエラーに引っ掛からなければ、fetchで/api/users/create-recordへformDataを送っている
     if (enableSubmit) {
       try {
@@ -86,10 +95,7 @@ const MedicalRecordFormPage: React.FC = () => {
           </p>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label
-                className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
-                // htmlFor="inline-visit-data"
-              >
+              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
                 通院日
                 <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
                   必須
@@ -97,6 +103,7 @@ const MedicalRecordFormPage: React.FC = () => {
               </label>
             </div>
             <div className="md:w-2/3">
+              {/* 作成したコンポーネントをインポートして当てる、InputDateTime */}
               <DatePicker
                 selected={selectedDate}
                 onChange={(date) => setSelectedDateTime(date)}
@@ -140,22 +147,8 @@ const MedicalRecordFormPage: React.FC = () => {
             <div className="md:w-1/3">
               <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
                 通院理由
-                {/* <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
-                必須
-              </text> */}
               </label>
             </div>
-            {/* 選択式にしたい */}
-            {/* <div className="md:w-2/3">
-            <input
-              className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-              type="email"
-              value={email}
-              defaultValue=""
-              placeholder="例) example@gmail.me"
-              
-            />
-          </div> */}
           </div>
 
           <div className="md:flex md:items-center mb-6">
@@ -224,15 +217,19 @@ const MedicalRecordFormPage: React.FC = () => {
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
-                次回通院日
+                次回通院予定
               </label>
             </div>
             <div className="md:w-2/3">
-              <DatePicker
-                selected={selectedDate}
+              <InputDateTime
+                selectedDateTime={selectedDate}
+                // 新しい日付を受け取る関数　(date)は新しく渡される日付
+                // setSelectedDateTime(date)関数でSelectedDateを更新する
                 onChange={(date) => setSelectedDateTime(date)}
-                className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               />
+              {/* <div>
+                選択された時刻: <b>{formatSelectedTime(selectedDate)}</b>
+              </div> */}
             </div>
           </div>
 

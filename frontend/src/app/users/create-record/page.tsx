@@ -95,7 +95,7 @@ const MedicalRecordFormPage: React.FC = () => {
           </p>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4">
                 通院日
                 <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
                   必須
@@ -114,7 +114,7 @@ const MedicalRecordFormPage: React.FC = () => {
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label
-                className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
+                className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4"
                 htmlFor="inline-medicalInstitution"
               >
                 医療機関名
@@ -145,7 +145,7 @@ const MedicalRecordFormPage: React.FC = () => {
 
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4">
                 通院理由
               </label>
             </div>
@@ -153,7 +153,7 @@ const MedicalRecordFormPage: React.FC = () => {
 
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4">
                 検査内容・医師の診察内容
                 <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
                   必須
@@ -180,7 +180,7 @@ const MedicalRecordFormPage: React.FC = () => {
           {/* 写真 */}
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4">
                 処方箋
               </label>
             </div>
@@ -198,7 +198,7 @@ const MedicalRecordFormPage: React.FC = () => {
           {/* 処方箋　手打ち */}
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4">
                 処方されたお薬
               </label>
             </div>
@@ -216,7 +216,7 @@ const MedicalRecordFormPage: React.FC = () => {
 
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-left mb-1 md:mb-0 pr-4">
                 次回通院予定
               </label>
             </div>

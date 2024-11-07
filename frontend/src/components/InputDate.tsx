@@ -28,6 +28,7 @@ const InputDate: React.FC<InputDateProps> = ({
       onChange={(date) => onChange(date)}
       dateFormat="MM/dd/yyyy"
       timeCaption="Time"
+      className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
     />
   );
 };

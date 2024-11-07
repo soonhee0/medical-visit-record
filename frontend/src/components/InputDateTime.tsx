@@ -32,13 +32,6 @@ const InputDateTime: React.FC<InputDateTimeProps> = ({
       timeIntervals={15}
       timeCaption="time"
       dateFormat="MM/dd/yyyy h:mm aa"
-      // dateFormat="MMMM d, yyyy h:mm aa"
-      // locale="pt-BR"
-
-      // timeFormat="p"
-      // timeIntervals={15}
-      // dateFormat="Pp"
-
       className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
     />
   );

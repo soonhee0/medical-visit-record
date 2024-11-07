@@ -1,7 +1,7 @@
 "use client";
+import InputDate from "@/components/InputDate";
 import InputDateTime from "@/components/InputDateTime";
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ApiUrl } from "./../../constants/url";
 
@@ -18,12 +18,16 @@ const MedicalRecordFormPage: React.FC = () => {
     prescriptionText: "",
     // nextVisitDate: "",
   });
-
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    // null
+    new Date()
+  );
   // new Date()はコードが実行された時点での日時を示す
   // selectedDateは日付と時刻を保持する変数
-  // setSelectedDateTimeはselectedDateの値を更新する関数
-  const [selectedDate, setSelectedDateTime] = React.useState<Date | null>(
-    new Date()
+  // setSelectedDateTimeはselectedDateTimeの値を更新する関数
+  const [selectedDateTime, setSelectedDateTime] = React.useState<Date | null>(
+    null
+    // new Date()
   );
 
   // const [isSubmitted, setIsSubmitted] = useState(false);
@@ -104,9 +108,9 @@ const MedicalRecordFormPage: React.FC = () => {
             </div>
             <div className="md:w-2/3">
               {/* 作成したコンポーネントをインポートして当てる、InputDateTime */}
-              <DatePicker
-                selected={selectedDate}
-                onChange={(date) => setSelectedDateTime(date)}
+              <InputDate
+                selectedDate={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
                 className="bg-gray-200 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               />
             </div>
@@ -222,10 +226,10 @@ const MedicalRecordFormPage: React.FC = () => {
             </div>
             <div className="md:w-2/3">
               <InputDateTime
-                selectedDateTime={selectedDate}
+                selectedDateTime={selectedDateTime}
                 // 新しい日付を受け取る関数　(date)は新しく渡される日付
                 // setSelectedDateTime(date)関数でSelectedDateを更新する
-                onChange={(date) => setSelectedDateTime(date)}
+                onChange={(dateTime) => setSelectedDateTime(dateTime)}
               />
               {/* <div>
                 選択された時刻: <b>{formatSelectedTime(selectedDate)}</b>

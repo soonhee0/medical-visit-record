@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 type InputDateProps = {
   selectedDate: Date | null;
   onChange: (date: Date | null) => void;
-  //   initialDate?: Date | null;
+  className?: string;
 };
 
 // ユーザーが日付を選択できる入力フォームを提供するコンポーネント
@@ -23,11 +23,10 @@ const InputDate: React.FC<InputDateProps> = ({
   return (
     // 日時を選択できるカレンダーと時間選択のUI
     <DatePicker
-      // selectedDateがないときはinitialDateを使用
-
+      // selected={selectedDate}だとエラー表示された
       selected={selectedDate}
       onChange={(date) => onChange(date)}
-      dateFormat=" yyyy MMMM d"
+      dateFormat="MM/dd/yyyy"
       timeCaption="Time"
     />
   );

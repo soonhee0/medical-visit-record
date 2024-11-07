@@ -24,7 +24,8 @@ const InputDateTime: React.FC<InputDateTimeProps> = ({
     <DatePicker
       selected={selectedDateTime}
       // 日付が変更されたときに発火するイベントハンドラ
-      onChange={(date) => onChange(date)}
+      //  onChangeが発火すると選択された日付dateがonChangeの引数として渡される
+      onChange={(dateTime) => onChange(dateTime)}
       // 時間選択を可能にする
       showTimeSelect
       timeFormat="HH:mm"

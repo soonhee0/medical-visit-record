@@ -1,6 +1,5 @@
 // UserMenuコンポーネントを使ってボタンの表示を管理
 
-import React from "react";
 import { FaHospital, FaListAlt, FaUserPlus } from "react-icons/fa";
 import UserMenu from "../../../components/UserMenu";
 import { ApiUrl } from "./../../constants/url";
@@ -10,19 +9,15 @@ type Props = {
   };
 };
 
-
-const UserMenuPage: React.FC<Props>= async({ params }) => {
- 
-
-  const userId=parseInt(params.id);
+const UserMenuPage = async ({ params }: Props) => {
+  const userId = parseInt(params.id);
   // fetchやresponse.jsonにはawaitをつける
   // fetchを使って指定されたエンドポイントにGETリクエストを送信しユーザー情報を取得
-  const response=await fetch(`${ApiUrl.BASE_API_URL}/api/users/${userId}`);
+  const response = await fetch(`${ApiUrl.BASE_API_URL}/api/users/${userId}`);
   // JSONデータとして解析してその結果をdataとして格納する
-  const data=await response.json()
+  const data = await response.json();
 
- 
-  const userName=data.user?data.user.name:"匿名ユーザー";
+  const userName = data.user ? data.user.name : "匿名ユーザー";
 
   // ボタンのリスト
   const buttons = [
@@ -38,7 +33,7 @@ const UserMenuPage: React.FC<Props>= async({ params }) => {
       icon: <FaHospital />,
     },
   ];
-  
+
   return (
     <div className="flex flex-col items-center space-y-4 p-4 bg-gray-100 min-h-screen">
       {/* UserMenu に userName と buttons を渡す */}
